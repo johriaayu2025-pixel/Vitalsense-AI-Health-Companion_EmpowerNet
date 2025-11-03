@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* VitalSense Dark Tech Theme - Deep Space Navy with Neon Accents */
+    --background: 220 35% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 30% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 30% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Neon Blue Primary */
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 35% 8%;
+
+    /* Teal Secondary */
+    --secondary: 165 100% 50%;
+    --secondary-foreground: 220 35% 8%;
+
+    /* Purple Accent */
+    --accent: 270 80% 65%;
+    --accent-foreground: 220 35% 8%;
+
+    --muted: 220 25% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    /* Health Status Colors */
+    --success: 140 70% 55%;
+    --warning: 35 85% 60%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 220 30% 20%;
+    --input: 220 30% 15%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar Dark Tech */
+    --sidebar-background: 220 35% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 220 35% 8%;
+    --sidebar-accent: 220 30% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 195 100% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(195, 100%, 50%), hsl(270, 80%, 65%));
+    --gradient-card: linear-gradient(135deg, hsl(220, 30%, 12%), hsl(220, 35%, 15%));
+    --gradient-glow: radial-gradient(circle at 50% 0%, hsla(195, 100%, 50%, 0.15), transparent 70%);
+    
+    /* Glows */
+    --glow-primary: 0 0 20px hsla(195, 100%, 50%, 0.3);
+    --glow-secondary: 0 0 20px hsla(165, 100%, 50%, 0.3);
+    --glow-accent: 0 0 20px hsla(270, 80%, 65%, 0.3);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Dark mode uses the same theme */
+    --background: 220 35% 8%;
+    --foreground: 0 0% 95%;
+    --card: 220 30% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 30% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 35% 8%;
+    --secondary: 165 100% 50%;
+    --secondary-foreground: 220 35% 8%;
+    --accent: 270 80% 65%;
+    --accent-foreground: 220 35% 8%;
+    --muted: 220 25% 18%;
+    --muted-foreground: 220 10% 60%;
+    --success: 140 70% 55%;
+    --warning: 35 85% 60%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 220 30% 20%;
+    --input: 220 30% 15%;
+    --ring: 195 100% 50%;
+    --sidebar-background: 220 35% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 220 35% 8%;
+    --sidebar-accent: 220 30% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 195 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Glassmorphism utilities */
+  .glass-card {
+    @apply backdrop-blur-xl bg-card/40 border border-border/40 rounded-2xl;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-primary/40 hover:bg-card/60;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(0, 212, 255, 0.15),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6),
+                0 0 35px rgba(0, 212, 255, 0.25),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  }
+
+  /* Glow effects */
+  .glow-text-primary {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.6),
+                 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-border-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4),
+                inset 0 0 20px hsl(var(--primary) / 0.1);
+  }
+
+  .glow-button {
+    @apply transition-all duration-300;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+  }
+
+  .glow-button:hover {
+    box-shadow: 0 6px 25px rgba(0, 212, 255, 0.4),
+                0 0 30px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Gradient avatars */
+  .avatar-gradient-blue {
+    background: linear-gradient(135deg, hsl(195, 100%, 50%), hsl(220, 80%, 60%));
+  }
+
+  .avatar-gradient-purple {
+    background: linear-gradient(135deg, hsl(270, 80%, 65%), hsl(300, 70%, 60%));
+  }
+
+  .avatar-gradient-green {
+    background: linear-gradient(135deg, hsl(165, 100%, 50%), hsl(140, 70%, 55%));
+  }
+
+  .avatar-gradient-orange {
+    background: linear-gradient(135deg, hsl(35, 85%, 60%), hsl(20, 85%, 55%));
+  }
+
+  .avatar-gradient-pink {
+    background: linear-gradient(135deg, hsl(330, 80%, 65%), hsl(350, 70%, 60%));
+  }
+
+  /* Micro-interactions */
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
